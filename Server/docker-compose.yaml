@@ -1,0 +1,14 @@
+version: "2"
+services:
+    nfs:
+        image: itsthenetwork/nfs-server-alpine
+        container_name: nfs-server
+        restart: unless-stopped
+        privileged: true
+        environment:
+            - SHARED_DIRECTORY=/test-share
+        volumes:
+            - ./test-share:/test-share
+            - ./export:/etc/export
+        ports:
+            - 2049:2049
